@@ -31,4 +31,21 @@ public class FirebaseUserManagement {
             }
         });
     }
+
+    public static void loginToHeyU(final Context context,User userData) {
+        firebaseAuth.signInWithEmailAndPassword(userData.getUserName(), userData.getUserPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+            @Override
+            public void onComplete(@NonNull Task<AuthResult> task) {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context, "FINALMENTE", Toast.LENGTH_SHORT).show();
+                }
+            }
+
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(context, "DEU RUIM LEK", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 }
