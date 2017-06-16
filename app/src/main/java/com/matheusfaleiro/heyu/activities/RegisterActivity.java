@@ -21,8 +21,6 @@ import butterknife.OnClick;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    User user = new User();
-
     @BindView((R.id.textInputUserEmail))
     TextInputLayout textInputLayoutUserEmail;
 
@@ -37,6 +35,8 @@ public class RegisterActivity extends AppCompatActivity {
 
     @BindView((R.id.progressBarRegisterNewUser))
     ProgressBar progressBarRegisterNewUser;
+
+    User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +58,10 @@ public class RegisterActivity extends AppCompatActivity {
         removeErrorFromTextInputLayout();
 
         if ((isEmailValid(userEmail)) && (areAllObligatoryFieldsFilled(userEmail, userPassword))) {
+
+            user.setUserName(userEmail);
+            user.setUserPassword(userPassword);
+
             FirebaseUserManagement.registerNewUser(getApplicationContext(), user);
             finish();
         }

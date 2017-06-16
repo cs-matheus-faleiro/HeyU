@@ -63,11 +63,10 @@
             android:layout_marginBottom="8dp"
             android:visibility="gone" />
 
-
         <ScrollView
             android:id="@+id/login_form"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -95,7 +94,6 @@
                     android:id="@+id/textInputUserPassword"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
                     app:errorEnabled="true"
                     app:passwordToggleEnabled="true"
                     app:passwordToggleTint="@color/colorPrimary">
@@ -123,12 +121,11 @@
         style="?android:textAppearanceSmall"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginStart="16dp"
         android:background="@color/colorPrimary"
         android:text="@string/register_new_user"
         android:textColor="@color/colorPrimaryText"

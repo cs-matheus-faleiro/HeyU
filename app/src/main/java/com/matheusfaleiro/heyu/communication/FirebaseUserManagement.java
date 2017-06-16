@@ -15,8 +15,8 @@ public class FirebaseUserManagement {
 
     private static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-    public static void registerNewUser(final Context context,User user) {
-        firebaseAuth.createUserWithEmailAndPassword(user.getUserName(), user.getUserPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+    public static void registerNewUser(final Context context,User userData) {
+        firebaseAuth.createUserWithEmailAndPassword(userData.getUserName(), userData.getUserPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
