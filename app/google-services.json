@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "553771473145",
+    "firebase_url": "https://heyu-6db3b.firebaseio.com",
+    "project_id": "heyu-6db3b",
+    "storage_bucket": "heyu-6db3b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553771473145:android:7c823aa97b3c4983",
+        "android_client_info": {
+          "package_name": "com.matheusfaleiro.heyu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553771473145-6vt68vgm7751cbjal8ebkqj4i9n43078.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.matheusfaleiro.heyu",
+            "certificate_hash": "5598260cd6b1a1b145f8590c6edb861e88251ad0"
+          }
+        },
+        {
+          "client_id": "553771473145-kbv6ptgnnulg7ksomelk3ae156lhjh5l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBEDzu90xUg3F5qjfwgdxmpRcUXH1j1W4k"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553771473145-kbv6ptgnnulg7ksomelk3ae156lhjh5l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
