@@ -1,13 +1,15 @@
-package com.matheusfaleiro.heyu;
+package com.matheusfaleiro.heyu.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class HeyUActivity extends AppCompatActivity {
+import com.matheusfaleiro.heyu.R;
+
+public class RegisterActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hey_u);
+        setContentView(R.layout.activity_register);
     }
 }
