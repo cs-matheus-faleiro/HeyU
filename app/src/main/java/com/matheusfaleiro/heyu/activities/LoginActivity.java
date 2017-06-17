@@ -20,37 +20,37 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
-    @BindView((R.id.textInputUserEmail))
-    TextInputLayout textInputLayoutUserEmail;
+    @BindView((R.id.textInputUserEmailSignIn))
+    TextInputLayout textInputUserEmailSignIn;
 
-    @BindView(R.id.editTextUserEmail)
-    EditText editTextUserEmail;
+    @BindView(R.id.editTextUserEmailSignIn)
+    EditText editTextUserEmailSignIn;
 
-    @BindView((R.id.textInputUserPassword))
-    TextInputLayout textInputLayoutUserPassword;
+    @BindView((R.id.textInputUserPasswordSignIn))
+    TextInputLayout textInputUserPasswordSignIn;
 
-    @BindView(R.id.editTextUserPassword)
-    EditText getEditTextUserPassword;
+    @BindView(R.id.editTextUserPasswordSignIn)
+    EditText editTextUserPasswordSignIn;
 
-    @BindView((R.id.progressBarRegisterNewUser))
-    ProgressBar progressBarRegisterNewUser;
+    @BindView((R.id.progressBarLogin))
+    ProgressBar progressBarLogin;
 
     User user = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
+        setContentView(R.layout.activity_login);
 
         ButterKnife.bind(this);
     }
 
-    @OnClick(R.id.buttonRegisterNewUser)
-    public void registerNewUser() {
-        createNewUser(editTextUserEmail.getText().toString(), getEditTextUserPassword.getText().toString());
+    @OnClick(R.id.buttonLoginUser)
+    public void signInUser() {
+        performSignInProcess(editTextUserEmailSignIn.getText().toString(), editTextUserPasswordSignIn.getText().toString());
     }
 
-    private void createNewUser(String userEmail, String userPassword) {
+    private void performSignInProcess(String userEmail, String userPassword) {
 
         showProgress(true);
 
@@ -61,7 +61,7 @@ public class LoginActivity extends AppCompatActivity {
             user.setUserName(userEmail);
             user.setUserPassword(userPassword);
 
-            FirebaseUserManagement.registerNewUser(getApplicationContext(), user);
+            FirebaseUserManagement.loginToHeyU(getApplicationContext(), user);
             finish();
         }
 
@@ -73,11 +73,11 @@ public class LoginActivity extends AppCompatActivity {
         boolean result = true;
 
         if (TextUtils.isEmpty(userEmail)) {
-            textInputLayoutUserEmail.setError(getResources().getString(R.string.obligatory_field));
+            textInputUserEmailSignIn.setError(getResources().getString(R.string.obligatory_field));
             result = false;
         } else if (TextUtils.isEmpty(userPassword)) {
             result = false;
-            textInputLayoutUserPassword.setError(getResources().getString(R.string.obligatory_field));
+            textInputUserPasswordSignIn.setError(getResources().getString(R.string.obligatory_field));
         }
 
         return result;
@@ -88,7 +88,7 @@ public class LoginActivity extends AppCompatActivity {
         boolean result = true;
 
         if (!Patterns.EMAIL_ADDRESS.matcher(userEmail).matches()) {
-            textInputLayoutUserEmail.setError(getResources().getString(R.string.invalid_email));
+            textInputUserEmailSignIn.setError(getResources().getString(R.string.invalid_email));
             result = false;
         }
 
@@ -96,17 +96,17 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void removeErrorFromTextInputLayout() {
-        textInputLayoutUserPassword.setError(null);
-        textInputLayoutUserEmail.setError(null);
+        textInputUserEmailSignIn.setError(null);
+        textInputUserPasswordSignIn.setError(null);
     }
 
     private void showProgress(final boolean show) {
-        progressBarRegisterNewUser.setVisibility(show ? View.VISIBLE : View.GONE);
-        progressBarRegisterNewUser.animate().setDuration(1000).alpha(
+        progressBarLogin.setVisibility(show ? View.VISIBLE : View.GONE);
+        progressBarLogin.animate().setDuration(1000).alpha(
                 show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
-                progressBarRegisterNewUser.setVisibility(show ? View.VISIBLE : View.GONE);
+                progressBarLogin.setVisibility(show ? View.VISIBLE : View.GONE);
             }
         });
     }

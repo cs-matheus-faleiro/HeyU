@@ -21,17 +21,17 @@ import butterknife.OnClick;
 
 public class RegisterActivity extends AppCompatActivity {
 
-    @BindView((R.id.textInputUserEmail))
+    @BindView((R.id.textInputUserEmailRegistration))
     TextInputLayout textInputLayoutUserEmail;
 
-    @BindView(R.id.editTextUserEmail)
+    @BindView(R.id.editTextUserEmailRegistration)
     EditText editTextUserEmail;
 
-    @BindView((R.id.textInputUserPassword))
+    @BindView((R.id.textInputUserPasswordRegistration))
     TextInputLayout textInputLayoutUserPassword;
 
     @BindView(R.id.editTextUserPassword)
-    EditText getEditTextUserPassword;
+    EditText editTextUserPassword;
 
     @BindView((R.id.progressBarRegisterNewUser))
     ProgressBar progressBarRegisterNewUser;
@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     @OnClick(R.id.buttonRegisterNewUser)
     public void registerNewUser() {
-        createNewUser(editTextUserEmail.getText().toString(), getEditTextUserPassword.getText().toString());
+        createNewUser(editTextUserEmail.getText().toString(), editTextUserPassword.getText().toString());
     }
 
     private void createNewUser(String userEmail, String userPassword) {

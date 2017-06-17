@@ -9,19 +9,19 @@ import com.matheusfaleiro.heyu.R;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class HeyUActivity extends AppCompatActivity {
+public class WelcomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hey_u);
+        setContentView(R.layout.activity_welcome);
 
         ButterKnife.bind(this);
     }
 
     @OnClick(R.id.buttonLogin)
     public void goToLoginActivity() {
-        //startAnotherActivity(LoginActivity.class);
+        startAnotherActivity(LoginActivity.class);
     }
 
     @OnClick(R.id.buttonRegister)
