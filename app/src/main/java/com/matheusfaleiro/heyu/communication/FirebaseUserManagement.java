@@ -48,4 +48,8 @@ public class FirebaseUserManagement {
             }
         });
     }
+
+    public static void logoutFromHeyU(){
+        FirebaseAuth.getInstance().signOut();
+    }
 }
