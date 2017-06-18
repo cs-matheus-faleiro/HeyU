@@ -103,7 +103,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     private void showProgress(final boolean show) {
         progressBarRegisterNewUser.setVisibility(show ? View.VISIBLE : View.GONE);
-        progressBarRegisterNewUser.animate().setDuration(1000).alpha(
+        progressBarRegisterNewUser.animate().setDuration(10000).alpha(
                 show ? 1 : 0).setListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {
