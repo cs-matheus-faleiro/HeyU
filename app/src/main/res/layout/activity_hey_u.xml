@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.matheusfaleiro.heyu.activities.HeyUActivity">
+    tools:context="com.matheusfaleiro.heyu.activities.heyu.activity.HeyUActivity">
 
 
     <android.support.design.widget.AppBarLayout
-        android:id="@+id/appBarLayout"
+        android:id="@+id/appBarHeyULayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -16,9 +17,12 @@
             layout="@layout/app_toolbar_layout" />
 
         <android.support.design.widget.TabLayout
-            android:id="@+id/tabBarLayout"
+            android:id="@+id/tabBarHeyULayout"
+            app:tabSelectedTextColor="@color/colorPrimaryText"
+            app:tabTextColor="@color/colorPrimaryDark"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:tabIndicatorColor="@color/colorPrimaryText" />
 
     </android.support.design.widget.AppBarLayout>
 
@@ -26,6 +30,6 @@
         android:id="@+id/viewPagerHeyU"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/appBarLayout" />
+        android:layout_below="@+id/appBarHeyULayout" />
 
 </RelativeLayout>

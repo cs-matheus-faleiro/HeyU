@@ -1,4 +1,4 @@
-package com.matheusfaleiro.heyu.activities;
+package com.matheusfaleiro.heyu.activities.login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;

@@ -1,4 +1,5 @@
 <resources>
+
     <string name="app_name">HeyU</string>
     <string name="hey_u">Hey U</string>
     <string name="create_a_new_account">Create a New Account</string>
@@ -11,4 +12,5 @@
     <string name="display_name">display name</string>
     <string name="log_out">log out</string>
     <string name="account_settings">account settings</string>
+
 </resources>

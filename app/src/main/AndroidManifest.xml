@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <activity android:name=".activities.HeyUActivity">
+        <activity android:name=".activities.heyu.activity.HeyUActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,16 +18,16 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".activities.WelcomeActivity" />
+        <activity android:name=".activities.welcome.WelcomeActivity" />
 
         <activity
-            android:name=".activities.RegisterActivity"
-            android:parentActivityName=".activities.WelcomeActivity"
+            android:name=".activities.register.RegisterActivity"
+            android:parentActivityName=".activities.welcome.WelcomeActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
         <activity
-            android:name=".activities.LoginActivity"
-            android:parentActivityName=".activities.WelcomeActivity"
+            android:name=".activities.login.LoginActivity"
+            android:parentActivityName=".activities.welcome.WelcomeActivity"
             android:windowSoftInputMode="adjustPan|stateHidden" />
 
     </application>

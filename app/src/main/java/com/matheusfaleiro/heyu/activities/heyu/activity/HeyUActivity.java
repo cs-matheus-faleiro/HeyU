@@ -1,7 +1,9 @@
-package com.matheusfaleiro.heyu.activities;
+package com.matheusfaleiro.heyu.activities.heyu.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -10,6 +12,8 @@ import android.view.MenuItem;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.matheusfaleiro.heyu.R;
+import com.matheusfaleiro.heyu.activities.heyu.adapter.SectionsPageAdapter;
+import com.matheusfaleiro.heyu.activities.welcome.WelcomeActivity;
 import com.matheusfaleiro.heyu.communication.FirebaseUserManagement;
 
 import butterknife.BindView;
@@ -17,10 +21,17 @@ import butterknife.ButterKnife;
 
 public class HeyUActivity extends AppCompatActivity {
 
+
+    @BindView(R.id.tabBarHeyULayout)
+    TabLayout tabBarLayout;
+
+    @BindView(R.id.viewPagerHeyU)
+    ViewPager viewPagerHeyU;
+
     @BindView(R.id.hey_u_toolbar)
     Toolbar heyUToolbar;
 
-    FirebaseAuth firebaseAuth;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +43,12 @@ public class HeyUActivity extends AppCompatActivity {
         setUpToolbar();
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        SectionsPageAdapter sectionsPageAdapter = new SectionsPageAdapter(getSupportFragmentManager());
+
+        viewPagerHeyU.setAdapter(sectionsPageAdapter);
+
+        tabBarLayout.setupWithViewPager(viewPagerHeyU);
 
     }
 
@@ -82,4 +99,5 @@ public class HeyUActivity extends AppCompatActivity {
         startActivity(intent);
         finish();
     }
+
 }

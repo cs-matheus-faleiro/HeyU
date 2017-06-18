@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
-    tools:context="com.matheusfaleiro.heyu.activities.WelcomeActivity">
+    tools:context="com.matheusfaleiro.heyu.activities.welcome.WelcomeActivity">
 
     <TextView
         android:id="@+id/textViewAppName"

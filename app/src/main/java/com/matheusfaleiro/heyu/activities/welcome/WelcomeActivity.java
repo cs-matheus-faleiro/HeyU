@@ -1,10 +1,12 @@
-package com.matheusfaleiro.heyu.activities;
+package com.matheusfaleiro.heyu.activities.welcome;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.matheusfaleiro.heyu.R;
+import com.matheusfaleiro.heyu.activities.login.LoginActivity;
+import com.matheusfaleiro.heyu.activities.register.RegisterActivity;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
