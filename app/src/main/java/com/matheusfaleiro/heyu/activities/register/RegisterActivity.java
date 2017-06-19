@@ -15,7 +15,6 @@ import android.widget.Toast;
 
 import com.matheusfaleiro.heyu.R;
 import com.matheusfaleiro.heyu.activities.heyu.activity.HeyUActivity;
-import com.matheusfaleiro.heyu.communication.FirebaseDatabaseManagement;
 import com.matheusfaleiro.heyu.communication.FirebaseUserManagement;
 import com.matheusfaleiro.heyu.model.User;
 
@@ -24,6 +23,12 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class RegisterActivity extends AppCompatActivity {
+
+    @BindView((R.id.textInputUserDisplayName))
+    TextInputLayout textInputUserDisplayName;
+
+    @BindView(R.id.editTextUserDisplayNameRegistration)
+    EditText editTextUserDisplayNameRegistration;
 
     @BindView((R.id.textInputUserEmailRegistration))
     TextInputLayout textInputLayoutUserEmail;
@@ -37,10 +42,16 @@ public class RegisterActivity extends AppCompatActivity {
     @BindView(R.id.editTextUserPassword)
     EditText editTextUserPassword;
 
+    @BindView(R.id.textInputUserPasswordConfirmationRegistration)
+    TextInputLayout textInputLayoutUserPasswordConfirmationRegistration;
+
+    @BindView(R.id.editTextUserPasswordConfirmationRegistration)
+    EditText editTextUserPasswordConfirmationRegistration;
+
     @BindView((R.id.progressBarRegisterNewUser))
     ProgressBar progressBarRegisterNewUser;
 
-    User user = new User();
+    User userToBeRegistered = new User();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,48 +63,64 @@ public class RegisterActivity extends AppCompatActivity {
 
     @OnClick(R.id.buttonRegisterNewUser)
     public void registerNewUser() {
-        createNewUser(editTextUserEmail.getText().toString(), editTextUserPassword.getText().toString());
+        createNewUser(editTextUserDisplayNameRegistration.getText().toString(), editTextUserEmail.getText().toString(), editTextUserPassword.getText().toString());
     }
 
-    private void createNewUser(String userEmail, String userPassword) {
+    private void createNewUser(String userDisplayName, String userEmail, String userPassword) {
 
         showProgress(true);
 
         removeErrorFromTextInputLayout();
 
-        if ((isEmailValid(userEmail)) && (areAllObligatoryFieldsFilled(userEmail, userPassword))) {
-            registerNewUserIntoFirebase(userEmail, userPassword);
+        if ((areAllObligatoryFieldsFilled(userDisplayName, userEmail, userPassword)) && (isEmailValid(userEmail))) {
+            if (areThePasswordsEqual(editTextUserPassword.getText().toString(), editTextUserPasswordConfirmationRegistration.getText().toString()))
+                registerNewUserIntoFirebase(userEmail, userPassword);
         }
 
         showProgress(false);
     }
 
+    private boolean areThePasswordsEqual(String userPassword, String userPasswordConfirmation) {
+        if (!TextUtils.equals(userPassword, userPasswordConfirmation)) {
+            Toast.makeText(this, getResources().getString(R.string.your_passwords_do_not_mismatch), Toast.LENGTH_LONG).show();
+            textInputLayoutUserPassword.setError(getResources().getString(R.string.your_passwords_do_not_mismatch));
+            textInputLayoutUserPasswordConfirmationRegistration.setError(getResources().getString(R.string.your_passwords_do_not_mismatch));
+
+            return false;
+        }
+
+        return true;
+    }
+
     private void registerNewUserIntoFirebase(String userEmail, String userPassword) {
-        if (FirebaseUserManagement.registerNewUser(getApplicationContext(), setUserNameEmailAndPassword(userEmail, userPassword))) {
+        if (FirebaseUserManagement.registerNewUser(setUserNameEmailAndPassword(userEmail, userPassword))) {
             startAnotherActivity(HeyUActivity.class);
-            finish();
         } else {
             Toast.makeText(this, "Deu RUIM LEK", Toast.LENGTH_SHORT).show();
         }
     }
 
     private User setUserNameEmailAndPassword(String userEmail, String userPassword) {
-        user.setUserName(userEmail);
-        user.setUserPassword(userPassword);
+        userToBeRegistered.setDisplayUserName(editTextUserDisplayNameRegistration.getText().toString());
+        userToBeRegistered.setUserName(userEmail);
+        userToBeRegistered.setUserPassword(userPassword);
 
-        return user;
+        return userToBeRegistered;
     }
 
-    private boolean areAllObligatoryFieldsFilled(String userEmail, String userPassword) {
+    private boolean areAllObligatoryFieldsFilled(String displayName, String userEmail, String userPassword) {
 
         boolean result = true;
 
-        if (TextUtils.isEmpty(userEmail)) {
+        if (TextUtils.isEmpty(displayName)) {
+            textInputUserDisplayName.setError(getResources().getString(R.string.obligatory_field));
+            result = false;
+        } else if (TextUtils.isEmpty(userEmail)) {
             textInputLayoutUserEmail.setError(getResources().getString(R.string.obligatory_field));
             result = false;
         } else if (TextUtils.isEmpty(userPassword)) {
-            result = false;
             textInputLayoutUserPassword.setError(getResources().getString(R.string.obligatory_field));
+            result = false;
         }
 
         return result;
@@ -112,8 +139,10 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void removeErrorFromTextInputLayout() {
-        textInputLayoutUserPassword.setError(null);
+        textInputUserDisplayName.setError(null);
         textInputLayoutUserEmail.setError(null);
+        textInputLayoutUserPassword.setError(null);
+        textInputLayoutUserPasswordConfirmationRegistration.setError(null);
     }
 
     private void showProgress(final boolean show) {
@@ -130,5 +159,6 @@ public class RegisterActivity extends AppCompatActivity {
     private void startAnotherActivity(Class goToSelectedActivity) {
         Intent intent = new Intent(this, goToSelectedActivity);
         startActivity(intent);
+        finish();
     }
 }

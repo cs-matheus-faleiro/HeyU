@@ -1,8 +1,6 @@
 package com.matheusfaleiro.heyu.communication;
 
-import android.content.Context;
 import android.support.annotation.NonNull;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -16,15 +14,14 @@ public class FirebaseUserManagement {
 
     private static FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
-    static boolean result;
+    private static boolean result;
 
-    public static boolean registerNewUser(final Context context, final User userData) {
+    public static boolean registerNewUser(final User userData) {
         firebaseAuth.createUserWithEmailAndPassword(userData.getUserName(), userData.getUserPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
-                    result = true;
-                    FirebaseDatabaseManagement.addUserInformationToDatabase(userData, getCurrentUser());
+                    result = FirebaseDatabaseManagement.addUserInformationToDatabase(userData, getCurrentUser());
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -37,7 +34,7 @@ public class FirebaseUserManagement {
         return result;
     }
 
-    public static boolean loginToHeyU(final Context context, User userData) {
+    public static boolean loginToHeyU(User userData) {
         firebaseAuth.signInWithEmailAndPassword(userData.getUserName(), userData.getUserPassword()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -55,7 +52,7 @@ public class FirebaseUserManagement {
         return result;
     }
 
-    public static String getCurrentUser() {
+    private static String getCurrentUser() {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         return firebaseUser.getUid();
     }

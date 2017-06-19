@@ -2,16 +2,20 @@ package com.matheusfaleiro.heyu.activities.login;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
+import android.support.v4.app.NavUtils;
 import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.matheusfaleiro.heyu.R;
+import com.matheusfaleiro.heyu.activities.heyu.activity.HeyUActivity;
 import com.matheusfaleiro.heyu.communication.FirebaseUserManagement;
 import com.matheusfaleiro.heyu.model.User;
 
@@ -20,6 +24,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class LoginActivity extends AppCompatActivity {
+
     @BindView((R.id.textInputUserEmailSignIn))
     TextInputLayout textInputUserEmailSignIn;
 
@@ -57,17 +62,25 @@ public class LoginActivity extends AppCompatActivity {
         removeErrorFromTextInputLayout();
 
         if ((isEmailValid(userEmail)) && (areAllObligatoryFieldsFilled(userEmail, userPassword))) {
-
-            user.setUserName(userEmail);
-            user.setUserPassword(userPassword);
-
-            if(FirebaseUserManagement.loginToHeyU(getApplicationContext(), user)) {
-
-            }
-            finish();
+            loginIntoFirebase(userEmail, userPassword);
         }
 
         showProgress(false);
+    }
+
+    private void loginIntoFirebase(String userEmail, String userPassword) {
+        if (FirebaseUserManagement.loginToHeyU(setUserNameEmailAndPassword(userEmail, userPassword))) {
+            startAnotherActivity(HeyUActivity.class);
+        } else {
+            Toast.makeText(this, "DEU RUIM NO LOGIN", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private User setUserNameEmailAndPassword(String userEmail, String userPassword) {
+        user.setUserName(userEmail);
+        user.setUserPassword(userPassword);
+
+        return user;
     }
 
     private boolean areAllObligatoryFieldsFilled(String userEmail, String userPassword) {
@@ -111,5 +124,11 @@ public class LoginActivity extends AppCompatActivity {
                 progressBarLogin.setVisibility(show ? View.VISIBLE : View.GONE);
             }
         });
+    }
+
+    private void startAnotherActivity(Class goToSelectedActivity) {
+        Intent intent = new Intent(this, goToSelectedActivity);
+        startActivity(intent);
+        finish();
     }
 }
