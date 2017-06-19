@@ -61,7 +61,9 @@ public class LoginActivity extends AppCompatActivity {
             user.setUserName(userEmail);
             user.setUserPassword(userPassword);
 
-            FirebaseUserManagement.loginToHeyU(getApplicationContext(), user);
+            if(FirebaseUserManagement.loginToHeyU(getApplicationContext(), user)) {
+
+            }
             finish();
         }
 

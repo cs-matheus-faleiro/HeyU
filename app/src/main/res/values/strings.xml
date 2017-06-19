@@ -14,5 +14,6 @@
     <string name="account_settings">account settings</string>
     <string name="change_your_profile_photo">change your profile photo</string>
     <string name="change_your_current_status">change your current status</string>
+    <string name="login">login</string>
 
 </resources>

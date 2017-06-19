@@ -2,6 +2,7 @@ package com.matheusfaleiro.heyu.activities.register;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,11 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.matheusfaleiro.heyu.R;
+import com.matheusfaleiro.heyu.activities.heyu.activity.HeyUActivity;
+import com.matheusfaleiro.heyu.communication.FirebaseDatabaseManagement;
 import com.matheusfaleiro.heyu.communication.FirebaseUserManagement;
 import com.matheusfaleiro.heyu.model.User;
 
@@ -58,15 +62,26 @@ public class RegisterActivity extends AppCompatActivity {
         removeErrorFromTextInputLayout();
 
         if ((isEmailValid(userEmail)) && (areAllObligatoryFieldsFilled(userEmail, userPassword))) {
-
-            user.setUserName(userEmail);
-            user.setUserPassword(userPassword);
-
-            FirebaseUserManagement.registerNewUser(getApplicationContext(), user);
-            finish();
+            registerNewUserIntoFirebase(userEmail, userPassword);
         }
 
         showProgress(false);
+    }
+
+    private void registerNewUserIntoFirebase(String userEmail, String userPassword) {
+        if (FirebaseUserManagement.registerNewUser(getApplicationContext(), setUserNameEmailAndPassword(userEmail, userPassword))) {
+            startAnotherActivity(HeyUActivity.class);
+            finish();
+        } else {
+            Toast.makeText(this, "Deu RUIM LEK", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private User setUserNameEmailAndPassword(String userEmail, String userPassword) {
+        user.setUserName(userEmail);
+        user.setUserPassword(userPassword);
+
+        return user;
     }
 
     private boolean areAllObligatoryFieldsFilled(String userEmail, String userPassword) {
@@ -110,5 +125,10 @@ public class RegisterActivity extends AppCompatActivity {
                 progressBarRegisterNewUser.setVisibility(show ? View.VISIBLE : View.GONE);
             }
         });
+    }
+
+    private void startAnotherActivity(Class goToSelectedActivity) {
+        Intent intent = new Intent(this, goToSelectedActivity);
+        startActivity(intent);
     }
 }

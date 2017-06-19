@@ -2,16 +2,18 @@ package com.matheusfaleiro.heyu.model;
 
 public class User {
 
-    private String displayUserName;
+    private String UID;
     private String userName;
     private String userPassword;
+    private String displayUserName;
+    private String currentStatus;
 
-    public String getDisplayUserName() {
-        return displayUserName;
+    public String getUID() {
+        return UID;
     }
 
-    public void setDisplayUserName(String displayUserName) {
-        this.displayUserName = displayUserName;
+    public void setUID(String UID) {
+        this.UID = UID;
     }
 
     public String getUserName() {
@@ -28,5 +30,21 @@ public class User {
 
     public void setUserPassword(String userPassword) {
         this.userPassword = userPassword;
+    }
+
+    public String getDisplayUserName() {
+        return displayUserName;
+    }
+
+    public void setDisplayUserName(String displayUserName) {
+        this.displayUserName = displayUserName;
+    }
+
+    public String getCurrentStatus() {
+        return currentStatus;
+    }
+
+    public void setCurrentStatus(String currentStatus) {
+        this.currentStatus = currentStatus;
     }
 }
