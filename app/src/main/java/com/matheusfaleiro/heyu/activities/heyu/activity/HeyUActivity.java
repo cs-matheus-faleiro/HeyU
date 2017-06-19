@@ -13,6 +13,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.matheusfaleiro.heyu.R;
 import com.matheusfaleiro.heyu.activities.heyu.adapter.SectionsPageAdapter;
+import com.matheusfaleiro.heyu.activities.settings.SettingsActivity;
 import com.matheusfaleiro.heyu.activities.welcome.WelcomeActivity;
 import com.matheusfaleiro.heyu.communication.FirebaseUserManagement;
 
@@ -72,15 +73,15 @@ public class HeyUActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.main_account_settings_button:
+                startAnotherActivity(SettingsActivity.class);
                 break;
             case R.id.main_logout_button:
                 FirebaseUserManagement.logoutFromHeyU();
-                sendToWelcomeActivity();
+                startAnotherActivity(WelcomeActivity.class);
                 break;
         }
 
         return true;
-
     }
 
     @Override
@@ -90,14 +91,13 @@ public class HeyUActivity extends AppCompatActivity {
         FirebaseUser currentUser = firebaseAuth.getCurrentUser();
 
         if (currentUser == null) {
-            sendToWelcomeActivity();
+            startAnotherActivity(WelcomeActivity.class);
         }
     }
 
-    private void sendToWelcomeActivity() {
-        Intent intent = new Intent(this, WelcomeActivity.class);
+    private void startAnotherActivity(Class goToSelectedActivity) {
+        Intent intent = new Intent(this, goToSelectedActivity);
         startActivity(intent);
-        finish();
     }
 
 }
