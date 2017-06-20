@@ -16,5 +16,6 @@
     <string name="change_your_current_status">change your current status</string>
     <string name="login">login</string>
     <string name="your_passwords_do_not_mismatch">Your password and confirmation password do not match.</string>
+    <string name="user_profile_image">user profile image</string>
 
 </resources>

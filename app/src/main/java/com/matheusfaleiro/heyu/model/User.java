@@ -7,6 +7,8 @@ public class User {
     private String userPassword;
     private String displayUserName;
     private String currentStatus;
+    private String displayImage;
+    private String thumbImage;
 
     public String getUID() {
         return UID;
@@ -46,5 +48,21 @@ public class User {
 
     public void setCurrentStatus(String currentStatus) {
         this.currentStatus = currentStatus;
+    }
+
+    public String getDisplayImage() {
+        return displayImage;
+    }
+
+    public void setDisplayImage(String displayImage) {
+        this.displayImage = displayImage;
+    }
+
+    public String getThumbImage() {
+        return thumbImage;
+    }
+
+    public void setThumbImage(String thumbImage) {
+        this.thumbImage = thumbImage;
     }
 }

@@ -52,7 +52,7 @@ public class FirebaseUserManagement {
         return result;
     }
 
-    private static String getCurrentUser() {
+    public static String getCurrentUser() {
         FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         return firebaseUser.getUid();
     }
