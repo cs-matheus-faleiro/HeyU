@@ -56,7 +56,6 @@ public class HeyUActivity extends AppCompatActivity {
     private void setUpToolbar() {
         setSupportActionBar(heyUToolbar);
         getSupportActionBar().setTitle(getResources().getString(R.string.hey_u));
-
     }
 
     @Override

@@ -1,7 +1,6 @@
 package com.matheusfaleiro.heyu.communication;
 
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -66,5 +65,9 @@ public class FirebaseDatabaseManagement {
         });
 
         return user;
+    }
+
+    public static String getUserCurrentStatus() {
+        return user.getCurrentStatus();
     }
 }

@@ -28,6 +28,9 @@
         <activity
             android:name=".activities.settings.SettingsActivity"
             android:parentActivityName=".activities.heyu.activity.HeyUActivity" />
+        <activity
+            android:name=".activities.settings.ChangeStatusActivity"
+            android:parentActivityName=".activities.settings.SettingsActivity" />
     </application>
 
 </manifest>

@@ -13,9 +13,11 @@
     <string name="log_out">log out</string>
     <string name="account_settings">account settings</string>
     <string name="change_your_profile_photo">change your profile photo</string>
-    <string name="change_your_current_status">change your current status</string>
+    <string name="change_your_current_status">Change Your Current Status</string>
     <string name="login">login</string>
     <string name="your_passwords_do_not_mismatch">Your password and confirmation password do not match.</string>
     <string name="user_profile_image">user profile image</string>
+    <string name="ok_message">OK</string>
+    <string name="status">Your Status</string>
 
 </resources>
