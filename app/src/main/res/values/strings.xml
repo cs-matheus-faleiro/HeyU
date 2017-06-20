@@ -7,7 +7,7 @@
     <string name="register_new_user">Register</string>
     <string name="user_email">e-mail</string>
     <string name="user_password">password</string>
-    <string name="obligatory_field">Obrligatory Field</string>
+    <string name="obligatory_field">Obligatory Field</string>
     <string name="invalid_email">Invalid E-mail</string>
     <string name="display_name">display name</string>
     <string name="log_out">log out</string>
@@ -19,5 +19,6 @@
     <string name="user_profile_image">user profile image</string>
     <string name="ok_message">OK</string>
     <string name="status">Your Status</string>
+    <string name="login_into_your_account">login into your account</string>
 
 </resources>

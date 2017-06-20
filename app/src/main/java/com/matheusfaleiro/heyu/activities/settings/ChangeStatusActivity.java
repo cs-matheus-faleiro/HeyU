@@ -54,7 +54,7 @@ public class ChangeStatusActivity extends AppCompatActivity {
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("Users").child(FirebaseUserManagement.getCurrentUser());
 
-        databaseReference.child("status").setValue(editTextUserCurrentStatus.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
+        databaseReference.child("current_status").setValue(editTextUserCurrentStatus.getText().toString()).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {
                 if (task.isSuccessful()) {

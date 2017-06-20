@@ -7,6 +7,24 @@
     android:background="@color/colorPrimary"
     tools:context="com.matheusfaleiro.heyu.activities.welcome.WelcomeActivity">
 
+    <ImageView
+        android:id="@+id/imageViewThumbImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="48dp"
+        android:contentDescription="@string/user_profile_image"
+        app:layout_constraintBottom_toTopOf="@+id/textViewAppName"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_hey_u_chat" />
+
+
     <TextView
         android:id="@+id/textViewAppName"
         android:layout_width="0dp"
@@ -15,7 +33,7 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="148dp"
         android:text="Hey U"
         android:textAlignment="center"
         android:textColor="@color/colorPrimaryText"
